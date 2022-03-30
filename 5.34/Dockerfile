@@ -24,7 +24,7 @@ RUN $env:PATH = $env:MINGW_PATH + ';' + $env:PATH; `
   bash -lc 'pacman -Syu --noconfirm;' 
 
 # Stage 2 : Get WinLibs in place
-from msys2 as winlibs
+FROM msys2 as winlibs
 SHELL ["powershell", "-executionpolicy", "bypass", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 WORKDIR C:/spbuild
 ENV LANG=en_US.UTF-8 `
@@ -45,7 +45,7 @@ RUN Expand-Archive "C:/Windows/temp/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.
   $env:PATH = $env:MINGW_PATH + ';' + $env:PATH;
 
 # Stage 3: get WiX installed
-from winlibs as wix
+FROM winlibs as wix
 SHELL ["powershell", "-executionpolicy", "bypass", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 WORKDIR C:/spbuild
 ENV LANG=en_US.UTF-8 `
