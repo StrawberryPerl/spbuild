@@ -1,0 +1,17 @@
+digraph spbuild {
+  extlibpatch [label="Patch external libraries"];
+  pinnedcompiler [label="A fixed compiler/toolchain"];
+  perlbuild [label="Build our Perl"];
+  extlibbuild [label="Build external libraries"];
+  perlmodinstall [label="Install modules into built Perl"];
+  perlpackage [label="Package built Perl"];
+  perlrelease [label="Release package on web"];
+
+  extlibpatch -> extlibbuild;
+  pinnedcompiler -> extlibbuild;
+  pinnedcompiler -> perlbuild;
+  extlibbuild -> perlmodinstall;
+  perlbuild -> perlmodinstall;
+  perlmodinstall -> perlpackage;
+  perlpackage -> perlrelease;
+}
