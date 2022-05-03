@@ -11,21 +11,12 @@ StrawberryPerl Builder - Setup an environment for building Strawberry Perl
 on, so we have to build our own on top of MSYS2 using MinGW.
 * The compiler choice makes it nearly impossible to use DLLs built by
 MSVC so we have to build our own of everything.
-* We have to build some libraries never meant for Windows.
-* We have to build some libraries that haven't had updates in years.
-* We have to build some libraries that rely on Perl for their build
-process (fun!)
-* Many libraries we have to build have one-off customizations we have
-to patch in for our purposes.
-* Every time we build these, we have to keep the compiler version and
-library binaries at the same exact build throughout the entirety of
-the Perl version we're building.
-* Once we have all of those things built and ready, we have to build
-Perl itself.
-* Once we have a built Perl, we have to go through and install some
-Perl modules to ship along with it.
-* Once we have everything built, we have to package it all up.
-* Once it's all packaged up, we have to release it to the site.
+* We have to build some libraries never meant for Windows, so patches are needed.
+
+The needed process looks like this, generated from `spbuild.dot` in this
+directory:
+
+<img src="spbuild.dot.svg"/>
 
 Part of the biggest issue is getting help. The complexities listed
 above scare off most people. So, we're trying to find ways to make all
