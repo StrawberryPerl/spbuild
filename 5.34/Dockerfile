@@ -6,11 +6,11 @@ WORKDIR C:/spbuild
 ENV LANG=en_US.UTF-8
 ENV GIT_TERMINAL_PROMPT=0
 ENV CHERE_INVOKING=1
-ENV MINGW_PATH="Z:/msys64;Z:/msys64/usr/bin"
-ENV WINLIBS_PATH="Z:/mingw64/bin"
-ENV WIX_PATH="Z:/sw/wix311"
-ENV CMAKE_PATH="Z:/sw/cmake"
-ENV GIT_PATH="Z:/git/cmd"
+ENV MINGW_PATH="C:/spbuild/msys64;C:/spbuild/msys64/usr/bin"
+ENV WINLIBS_PATH="C:/spbuild/mingw64/bin"
+ENV WIX_PATH="C:/spbuild/sw/wix311"
+ENV CMAKE_PATH="C:/spbuild/sw/cmake"
+ENV GIT_PATH="C:/spbuild/git/cmd"
 ENV MSYSTEM=MINGW64
 ENV MSYS2_PATH_TYPE=inherit
 ADD https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip c:/Windows/temp
