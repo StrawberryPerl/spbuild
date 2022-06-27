@@ -4,6 +4,18 @@ StrawberryPerl Builder - Setup an environment for building Strawberry Perl
 
 # SYNOPSIS
 
+```PowerShell
+cd 5.34
+docker build -t StrawberryPerl/strawbuild:latest -t StrawberryPerl/strawbuild:5.34 .
+docker run --rm -it StrawberryPerl/strawbuild:latest powershell.exe
+Z:
+git clone https://github.com/StrawberryPerl/build-extlibs.git .
+cd build-extlibs
+```
+
+At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#initial-setup) repo. All of the software you need is installed and on the path with the drive letter it
+wants in place.
+
 ## Issues:
 
 * It's hard to garner help because the build process is so complex and big.
@@ -39,7 +51,7 @@ everything up for distribution and pushes it to the site.
 ## What We Need:
 
 We'd be more than happy to have feedback and/or help with a better solution
-or with this Docker idea. 
+or with this Docker idea.
 
 # AUTHOR
 
