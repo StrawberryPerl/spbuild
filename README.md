@@ -25,10 +25,19 @@ on, so we have to build our own on top of MSYS2 using MinGW.
 MSVC so we have to build our own of everything.
 * We have to build some libraries never meant for Windows, so patches are needed.
 
-The needed process looks like this, generated from `spbuild.dot` in this
-directory:
+The needed process looks like this:
 
-<img src="spbuild.dot.svg"/>
+```mermaid
+  graph TD;
+      A[A Fixed Compiler/Toolchain]-->B[Build external libraries, some need Perl];
+      E[Patch External Libraries]-->B;
+      A-->C[Build our Perl];
+      C-->B;
+      B-->D[Install modules into built Perl];
+      C-->D;
+      D-->F[Package built Perl];
+      F-->G[Release package to web];
+```
 
 Part of the biggest issue is getting help. The complexities listed
 above scare off most people. So, we're trying to find ways to make all
