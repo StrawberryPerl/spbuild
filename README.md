@@ -9,7 +9,7 @@ cd 5.34
 docker build -t strawberyperl/strawbuild:latest -t strawberyperl/strawbuild:5.34 .
 docker run --rm -it strawberyperl/strawbuild:latest powershell.exe
 Z:
-git clone https://github.com/StrawberryPerl/build-extlibs.git .
+git clone https://github.com/StrawberryPerl/build-extlibs.git
 cd build-extlibs
 ```
 
