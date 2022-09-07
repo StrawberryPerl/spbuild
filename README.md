@@ -9,11 +9,20 @@ cd 5.34
 docker build -t strawberryperl/strawbuild:latest -t strawberryperl/strawbuild:5.34 .
 docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
 Z:
+bash -c 'exit';
+bash -c 'pacman --noconfirm -Syuu; exit';
+bash -c 'pacman --noconfirm -Syuu; exit';
+bash -c 'pacman --noconfirm -Scc; exit';
+bash -c 'pacman -Sy --noconfirm curl wget ca-certificates openssh openssl nano tar xz p7zip zip unzip bzip2; exit'
+bash -c 'pacman -Sy --noconfirm patch git make autoconf libtool nano automake man flex bison pkg-config; exit'
+bash -c 'pacman -Sy --noconfirm perl-libwww perl-IPC-Run3 perl-IO-Socket-SSL perl-Archive-Zip perl-LWP-Protocol-https perl-Digest-SHA; exit'
+bash -c 'pacman -Sy --noconfirm python; exit'
+bash -c 'pacman -Syu --noconfirm; exit'
 git clone https://github.com/StrawberryPerl/build-extlibs.git
 cd build-extlibs
 ```
 
-At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#initial-setup) repo. All of the software you need is installed and on the path with the drive letter it
+At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo. All of the software you need is installed and on the path with the drive letter it
 wants in place.
 
 ## Issues:
