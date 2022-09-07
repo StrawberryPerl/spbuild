@@ -18,8 +18,8 @@ bash -c 'pacman -Sy --noconfirm patch git make autoconf libtool nano automake ma
 bash -c 'pacman -Sy --noconfirm perl-libwww perl-IPC-Run3 perl-IO-Socket-SSL perl-Archive-Zip perl-LWP-Protocol-https perl-Digest-SHA; exit'
 bash -c 'pacman -Sy --noconfirm python; exit'
 bash -c 'pacman -Syu --noconfirm; exit'
-git clone https://github.com/StrawberryPerl/build-extlibs.git
-cd build-extlibs
+git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
+cd extlib
 ```
 
 At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo. All of the software you need is installed and on the path with the drive letter it
