@@ -20,6 +20,8 @@ bash -c 'pacman -Sy --noconfirm python; exit'
 bash -c 'pacman -Syu --noconfirm; exit'
 git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
 cd extlib
+bash
+./build.sh 5034 __
 ```
 
 At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo. All of the software you need is installed and on the path with the drive letter it
