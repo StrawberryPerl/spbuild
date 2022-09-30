@@ -7,7 +7,6 @@ Write-Host("We have a sufficient version of PowerShell.");
 Write-Host("");
 
 Start-Process -FilePath "bash" -ArgumentList "-c 'exit'" -Wait -NoNewWindow;
-Start-Process -FilePath "bash" -ArgumentList "-c 'rm -r /etc/pacman.d/gnupg/ && pacman-key --init && pacman-key --populate msys2; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman --noconfirm -Syuu; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman --noconfirm -Syuu; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman --noconfirm -Scc; exit'" -Wait -NoNewWindow;
