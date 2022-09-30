@@ -4,28 +4,55 @@ StrawberryPerl Builder - Setup an environment for building Strawberry Perl
 
 # SYNOPSIS
 
+Let's build and run our container.
+
 ```PowerShell
-cd 5.34
-docker build -t strawberryperl/strawbuild:latest -t strawberryperl/strawbuild:5.34 .
-docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
-Z:
-bash -c 'exit';
-bash -c 'pacman --noconfirm -Syuu; exit';
-bash -c 'pacman --noconfirm -Syuu; exit';
-bash -c 'pacman --noconfirm -Scc; exit';
-bash -c 'pacman -Sy --noconfirm curl wget ca-certificates openssh openssl nano tar xz p7zip zip unzip bzip2; exit'
-bash -c 'pacman -Sy --noconfirm patch git make autoconf libtool nano automake man flex bison pkg-config; exit'
-bash -c 'pacman -Sy --noconfirm perl-libwww perl-IPC-Run3 perl-IO-Socket-SSL perl-Archive-Zip perl-LWP-Protocol-https perl-Digest-SHA; exit'
-bash -c 'pacman -Sy --noconfirm python; exit'
-bash -c 'pacman -Syu --noconfirm; exit'
-git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
-cd extlib
-bash
+PS C:\Users\genio> git clone https://github.com/StrawberryPerl/spbuild.git .
+PS C:\Users\genio> cd .\spbuild\5.34
+PS C:\Users\genio\spbuild\5.34> docker build -t strawberryperl/strawbuild:latest -t strawberryperl/strawbuild:5.34 .
+PS C:\Users\genio\spbuild\5.34> docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
+```
+
+Now, we're in our container
+
+```PowerShell
+PS C:\spbuild> z:
+PS Z:\> bash
+```
+
+Now, we have to fix a few things in MSYS2:
+
+```bash
+ContainerAdministrator@767e415f72ad MINGW64 /z
+# ./gpgfix.sh
+ContainerAdministrator@767e415f72ad MINGW64 /z
+# exit
+```
+
+Now, we're back in our container's PowerShell. We need to get lots and lots of MSYS2 packages installed so that we're good to go in our build processes.
+
+```PowerShell
+PS Z:\> & .\init_msys2.ps1
+PS Z:\> git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
+PS Z:\> cd extlib
+PS Z:\extlib\> bash
+```
+
+Great! We've now got MSYS2 setup. We've got our [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo checked out and we're ready to try to build some external libraries.
+
+```bash
+ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
+#
 ./build.sh 5034 __
 ```
 
-At this point, you should be able to follow the instructions on the [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo. All of the software you need is installed and on the path with the drive letter it
-wants in place.
+Now we have to wait a really, really long time. You can get a good idea of how things worked out for you by grepping through the log files:
+
+```bash
+ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
+#
+grep -E 'retval=' _5034__/*.build.log
+```
 
 ## Issues:
 

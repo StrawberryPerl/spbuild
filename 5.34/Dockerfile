@@ -13,6 +13,7 @@ ENV CMAKE_PATH="Z:/sw/cmake/bin"
 ENV GIT_PATH="Z:/git/cmd"
 ENV MSYSTEM=MINGW64
 ENV MSYS2_PATH_TYPE=inherit
+COPY "gpgfix.sh" "./" 
 COPY "init_msys2.ps1" "./" 
 ADD https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-13.0.0-9.0.0-ucrt-r2/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip c:/Windows/temp
 ADD https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-windows-x86_64.zip C:/Windows/temp
