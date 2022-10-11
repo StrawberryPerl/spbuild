@@ -13,5 +13,6 @@ Start-Process -FilePath "bash" -ArgumentList "-c 'pacman --noconfirm -Scc; exit'
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Sy --noconfirm curl wget ca-certificates openssh openssl nano tar xz p7zip zip unzip bzip2; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Sy --noconfirm patch git make autoconf libtool nano automake man flex bison pkg-config; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Sy --noconfirm perl-libwww perl-IPC-Run3 perl-IO-Socket-SSL perl-Archive-Zip perl-LWP-Protocol-https perl-Digest-SHA; exit'" -Wait -NoNewWindow;
+Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Sy --noconfirm gettext-devel gperf; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Sy --noconfirm python; exit'" -Wait -NoNewWindow;
 Start-Process -FilePath "bash" -ArgumentList "-c 'pacman -Syu --noconfirm; exit'" -Wait -NoNewWindow;
