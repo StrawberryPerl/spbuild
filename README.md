@@ -75,6 +75,9 @@ The needed process looks like this:
       C-->D;
       D-->F[Package built Perl];
       F-->G[Release package to web];
+style A fill:#2da44e
+style B fill:#DAA520
+style E fill:#DAA520
 ```
 
 Part of the biggest issue is getting help. The complexities listed
