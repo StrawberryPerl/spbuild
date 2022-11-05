@@ -47,12 +47,14 @@ grep -E 'retval=' _5034__/*.build.log
 
 ## Issues:
 
-* It's hard to garner help because the build process is so complex and big.
+* The build process is reasonably complex and involved.
 * There isn't a working compiler/linker for Windows that we can rely
 on, so we have to build our own on top of MSYS2 using MinGW.
-* The compiler choice makes it nearly impossible to use DLLs built by
-MSVC so we have to build our own of everything.
-* We have to build some libraries never meant for Windows, so patches are needed.
+* The compiler choice means DLLs built by MSVC cannot be used so we
+have to build our own of everything.
+* Many libraries need to be patched so they work on Windows.
+Fortunately patches can often be borrowed or adapted from the
+[MSYS project](https://github.com/msys2/MINGW-packages).
 
 The needed process looks like this:
 
