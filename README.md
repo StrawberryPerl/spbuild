@@ -13,23 +13,14 @@ PS C:\Users\genio\spbuild\5.34> docker build -t strawberryperl/strawbuild:latest
 PS C:\Users\genio\spbuild\5.34> docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
 ```
 
-Now, we're in our container
+Now, we're in our container we move to the Z: drive and fix a few things in MSYS2:
 
 ```PowerShell
 PS C:\spbuild> z:
-PS Z:\> bash
+PS Z:\> bash -c ./gpgfix.sh
 ```
 
-Now, we have to fix a few things in MSYS2:
-
-```bash
-ContainerAdministrator@767e415f72ad MINGW64 /z
-# ./gpgfix.sh
-ContainerAdministrator@767e415f72ad MINGW64 /z
-# exit
-```
-
-Now, we're back in our container's PowerShell. We need to get lots and lots of MSYS2 packages installed so that we're good to go in our build processes.
+Next we need to install a number MSYS2 packages so that we're good to go in our build processes.
 
 ```PowerShell
 PS Z:\> & .\init_msys2.ps1
