@@ -4,44 +4,51 @@ StrawberryPerl Builder - Setup an environment for building Strawberry Perl
 
 # SYNOPSIS
 
-Let's build and run our container.
+Let's build and run our container from a PowerShell.
 
 ```PowerShell
-PS C:\Users\genio> git clone https://github.com/StrawberryPerl/spbuild.git .
-PS C:\Users\genio> cd .\spbuild\5.34
-PS C:\Users\genio\spbuild\5.34> docker build -t strawberryperl/strawbuild:latest -t strawberryperl/strawbuild:5.34 .
-PS C:\Users\genio\spbuild\5.34> docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
+# PS C:\Users\genio>
+git clone https://github.com/StrawberryPerl/spbuild.git .
+cd .\spbuild\5.34
+# PS C:\Users\genio\spbuild\5.34>
+docker build -t strawberryperl/strawbuild:latest -t strawberryperl/strawbuild:5.34 .
+docker run --rm -it strawberryperl/strawbuild:latest powershell.exe
 ```
 
 Now, we're in our container we move to the Z: drive and fix a few things in MSYS2:
 
 ```PowerShell
-PS C:\spbuild> z:
-PS Z:\> bash -c ./gpgfix.sh
+# PS C:\spbuild>
+z:
+# PS Z:\>
+bash -c ./gpgfix.sh
 ```
 
-Next we need to install a number MSYS2 packages so that we're good to go in our build processes.
+Next we need to install a number MSYS2 packages so that we're good to go in our build processes,
+and then start a bash shell.
 
 ```PowerShell
-PS Z:\> & .\init_msys2.ps1
-PS Z:\> git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
-PS Z:\> cd extlib
-PS Z:\extlib\> bash
+# PS Z:\>
+& .\init_msys2.ps1
+git clone https://github.com/StrawberryPerl/build-extlibs.git extlib
+cd extlib
+# PS Z:\extlib\>
+bash
 ```
 
-Great! We've now got MSYS2 setup. We've got our [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries) repo checked out and we're ready to try to build some external libraries.
+Great! We've now got MSYS2 setup. We've got our [build-extlibs](https://github.com/StrawberryPerl/build-extlibs#building-libraries)
+repo checked out and we're ready to try to build some external libraries
+using the bash shell.
 
 ```bash
-ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
-#
+# ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
 ./build.sh 5034 __
 ```
 
 Now we have to wait a really, really long time. You can get a good idea of how things worked out for you by grepping through the log files:
 
 ```bash
-ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
-#
+# ContainerAdministrator@767e415f72ad MINGW64 /z/extlib
 grep -E 'retval=' _5034__/*.build.log
 ```
 
