@@ -11,6 +11,7 @@ ENV WINLIBS_PATH="Z:/mingw64/bin"
 ENV WIX_PATH="Z:/sw/wix311"
 ENV CMAKE_PATH="Z:/sw/cmake/bin"
 ENV GIT_PATH="Z:/git/cmd"
+ENV ORA_PATH="Z:/spbuild/sw/orainst"
 ENV MSYSTEM=MINGW64
 ENV MSYS2_PATH_TYPE=inherit
 COPY "gpgfix.sh" "./" 
@@ -20,6 +21,7 @@ ADD https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1-wind
 ADD https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311-binaries.zip C:/Windows/temp
 ADD https://github.com/msys2/msys2-installer/releases/download/2022-03-19/msys2-base-x86_64-20220319.sfx.exe c:/Windows/temp
 ADD https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/PortableGit-2.36.1-64-bit.7z.exe c:/Windows/temp
+ADD https://download.oracle.com/otn_software/nt/instantclient/219000/instantclient-basic-windows.x64-21.9.0.0.0dbru.zip c:/Windows/temp
 # Expand and setup WinLibs
 RUN Expand-Archive "C:/Windows/temp/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip" -DestinationPath "C:/windows/temp/winlibs"; `
   Remove-Item "C:/Windows/temp/winlibs-x86_64-posix-seh-gcc-11.2.0-llvm-13.0.0-mingw-w64ucrt-9.0.0-r2.zip" -Force; `
@@ -34,6 +36,10 @@ RUN Expand-Archive "C:/Windows/temp/wix311-binaries.zip" -DestinationPath "C:/sp
 RUN Expand-Archive "C:/Windows/temp/cmake-3.24.1-windows-x86_64.zip" -DestinationPath "C:/Windows/temp/"; `
   Remove-Item "C:/Windows/temp/cmake-3.24.1-windows-x86_64.zip" -Force; `
   Move-Item "C:/Windows/temp/cmake-3.24.1-windows-x86_64" "C:/spbuild/sw/cmake";
+# Expand and setup Oracle Instant Client
+RUN Expand-Archive "C:/Windows/temp/instantclient-basic-windows.x64-21.9.0.0.0dbru.zip" -DestinationPath "C:/Windows/temp/"; `
+  Remove-Item "C:/Windows/temp/instantclient-basic-windows.x64-21.9.0.0.0dbru.zip" -Force; `
+  Move-Item "C:/Windows/temp/instantclient_21_9" "C:/spbuild/sw/orainst";
 # Expand and setup msys2 and make the PATH sticky
 RUN C:/Windows/temp/msys2-base-x86_64-20220319.sfx.exe -y -oC:/spbuild/; `
   Remove-Item "C:/Windows/temp/msys2-base-x86_64-20220319.sfx.exe";
@@ -46,5 +52,6 @@ RUN New-Item -Path $Profile -ItemType File -Force; `
   '$env:PATH = $env:WINLIBS_PATH + \";\" + $env:PATH;' >> $Profile; `
   '$env:PATH = $env:WIX_PATH + \";\" + $env:PATH;' >> $Profile; `
   '$env:PATH = $env:CMAKE_PATH + \";\" + $env:PATH;' >> $Profile; `
+  '$env:PATH = $env:ORA_PATH + \";\" + $env:PATH;' >> $Profile; `
   '$env:PATH = $env:GIT_PATH + \";\" + $env:PATH;' >> $Profile; `
   'subst Z: C:\spbuild;' >> $Profile;
