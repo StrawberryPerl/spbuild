@@ -77,6 +77,8 @@ The needed process looks like this:
       F-->G[Release package to web];
 style A fill:#2da44e
 style B fill:#DAA520
+style C fill:#DAA520
+style D fill:#DAA520
 style E fill:#DAA520
 ```
 
