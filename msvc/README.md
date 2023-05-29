@@ -6,7 +6,7 @@ StrawberryPerl MSVC Builder - Setup an environment for building Strawberry Perl 
 
 Microsoft has [allowed the free use of MSVC Build Tools](https://developercommunity.visualstudio.com/t/CC-compiler-and-linker-free-CLI-only/10042178) for OpenSource software or to build OpenSource software even when writing closed source code.
 
-Some languages, such as Perl, provide a minimal install and then rely on the user to install any necessary libraries that are necessary for Perl language bindings, etc. This allows the user to only install the extras that they need. Thos bindings and other XS modules require a compiler.
+Some languages, such as Perl, provide a minimal install and then rely on the user to install any necessary libraries that are necessary for Perl language bindings, etc. This allows the user to only install the extras that they need. Those bindings and other XS modules require a compiler.
 
 In short, it's not possible to install lots of useful Perl modules without a build environment. On Linux and MacOS, this is easy. It hasn't been possible on Windows without expecting the user to pay for a Visual Studio license until now.
 
