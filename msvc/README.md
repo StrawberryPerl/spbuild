@@ -6,7 +6,11 @@ StrawberryPerl MSVC Builder - Setup an environment for building Strawberry Perl 
 
 Microsoft has [allowed the free use of MSVC Build Tools](https://developercommunity.visualstudio.com/t/CC-compiler-and-linker-free-CLI-only/10042178) for OpenSource software or to build OpenSource software even when writing closed source code.
 
-For languages, such as Perl, that provide a minimal install set and rely on the user to download and install any necessary libraries that are necessary for Perl language bindings, etc. XS modules require a compiler... in short, it's hard to install lots of useful Perl modules without a build environment. On Linux and MacOS, this is easy. It hasn't been possible on Windows without expecting the user to pay for a Visual Studio license until now.
+Some languages, such as Perl, provide a minimal install and then rely on the user to install any necessary libraries that are necessary for Perl language bindings, etc. This allows the user to only install the extras that they need. Thos bindings and other XS modules require a compiler.
+
+In short, it's not possible to install lots of useful Perl modules without a build environment. On Linux and MacOS, this is easy. It hasn't been possible on Windows without expecting the user to pay for a Visual Studio license until now.
+
+Even now, though, it's not as simple to setup a working environment as it is on other operating systems. This document and some PowerShell scripts will help with that.
 
 ## Installing MSVC Build Tools
 
@@ -39,20 +43,20 @@ As you can see, we've now got a working C compiler that can build our little `He
 
 ## Downloading Perl Source and Prepping
 
-Now, let's download version `v5.36.1` from the git tag on the [Perl repo](https://github.com/Perl/perl5) and just throw it in our `_build` directory.
+Now, let's download version `v5.36.1` from the git tag on the [Perl repo](https://github.com/Perl/perl5) and just throw it in our `_builds` directory.
 
 
 ```bash
 # PS C:\Users\genio\spbuild\msvc\>
 cd _builds
-git clone --depth 1 --branch v5.36.1 https://github.com/Perl/perl5.git p5361
-cd .\p5361\win32\
-# PS C:\Users\genio\spbuild\msvc\_builds\p5361\win32>
+git clone --depth 1 --branch v5.36.1 https://github.com/Perl/perl5.git p536
+cd .\p536\win32\
+# PS C:\Users\genio\spbuild\msvc\_builds\p536\win32>
 ```
 
 ## Setting the Compiler Version.
 
-At around line 100 in the `Makefile` in the `p5361\win32` directory, you'll see where you need to uncomment the line corresponding to your version of Visual Studio to set the `CCTYPE` variable. It's probably safe to assume you have `MSVC143`.
+At around line 100 in the `Makefile` in the `p536\win32` directory, you'll see where you need to uncomment the line corresponding to your version of Visual Studio to set the `CCTYPE` variable. It's probably safe to assume you have `MSVC143`.
 
 * Visual Studio 2013 = `MSVC120`
 * Visual Studio 2015 = `MSVC140`
@@ -65,7 +69,7 @@ At around line 100 in the `Makefile` in the `p5361\win32` directory, you'll see 
 Now we have a development environment, Perl downloaded, the `CCTYPE` variable set, and we're officially ready to build Perl from source.
 
 ```bash
-# PS C:\Users\genio\spbuild\msvc\_builds\p5361\win32>
+# PS C:\Users\genio\spbuild\msvc\_builds\p536\win32>
 nmake
 nmake test
 nmake install
@@ -77,7 +81,7 @@ Chase Whitener `<capoeirab@cpan.org>`
 
 # COPYRIGHT & LICENSE
 
-Copyright 2019, Chase Whitener, All Rights Reserved.
+Copyright 2019, StrawberryPerl, All Rights Reserved.
 
 You may use, modify, and distribute this package under the
 same terms as Perl itself.
