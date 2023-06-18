@@ -52,11 +52,20 @@ Now we have to wait a really, really long time. You can get a good idea of how t
 grep -E 'retval=' _5034__/*.build.log
 ```
 
+TODO: Document zipping up libraries and pushing them to GitHub as a release.
+
+TODO: Document Running a specific Perl version build using those libraries.
+
+TODO: Document packaging Perl.
+
+TODO: Document releasing Perl to the strawberryperl.com site.
+
 ## Issues:
 
 * The build process is reasonably complex and involved.
-* There isn't a working compiler/linker for Windows that we can rely
-on, so we have to build our own on top of MSYS2 using MinGW.
+* Until very recently, there wasn't a working compiler/linker for
+Windows that we can rely on, so we have to build our own on top of
+MSYS2 using MinGW.
 * The compiler choice means DLLs built by MSVC cannot be used so we
 have to build our own of everything.
 * Many libraries need to be patched so they work on Windows.
@@ -80,6 +89,8 @@ style B fill:#DAA520
 style C fill:#DAA520
 style D fill:#DAA520
 style E fill:#DAA520
+style F fill:#DAA520
+style G fill:#DAA520
 ```
 
 Part of the biggest issue is getting help. The complexities listed
@@ -91,27 +102,23 @@ to get some more help since they could simply update and run the
 containers for whatever they think they could help with. That's what
 the idea behind this repository is.
 
-## Possible Solution:
-
-Build all of the compiler environment and then the third-party
-libraries necessary for Perl with one docker suite that stores the
-results in S3 or something. Then run a second docker suite that grabs
-all of that and builds Perl for us with the libraries and Perl modules
-we know we're wanting. Then yet a third docker suite that packages
-everything up for distribution and pushes it to the site.
-
 ## What We Need:
 
-We'd be more than happy to have feedback and/or help with a better solution
-or with this Docker idea.
+We need feedback and help!
+
+We also need someone to work on the MSVC-built Strawberry setup. We
+have done some very basic setup configuration in the `msvc` directory
+in this repository.
 
 # AUTHOR
 
 Chase Whitener `<capoeirab@cpan.org>`
 
+Shawn Laffan
+
 # COPYRIGHT & LICENSE
 
-Copyright 2019, Chase Whitener, All Rights Reserved.
+Copyright 2019, strawberryperl.com, All Rights Reserved.
 
 You may use, modify, and distribute this package under the
 same terms as Perl itself.

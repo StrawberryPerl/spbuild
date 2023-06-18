@@ -79,9 +79,11 @@ nmake install
 
 Chase Whitener `<capoeirab@cpan.org>`
 
+Shawn Laffan
+
 # COPYRIGHT & LICENSE
 
-Copyright 2019, StrawberryPerl, All Rights Reserved.
+Copyright 2019, strawberryperl.com, All Rights Reserved.
 
 You may use, modify, and distribute this package under the
 same terms as Perl itself.
