@@ -18,7 +18,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: windows-2019
+      vmImage: windows-2022
     steps:
     - task: Docker@2
       displayName: Build an image
