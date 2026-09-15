@@ -19,6 +19,7 @@ stages:
     displayName: Build
     pool:
       vmImage: windows-2022
+    container: mcr.microsoft.com/windows/servercore:ltsc2019
     steps:
     - task: Docker@2
       displayName: Build an image
